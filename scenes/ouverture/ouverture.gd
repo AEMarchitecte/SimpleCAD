@@ -1,6 +1,7 @@
 extends "res://autoload/global_fonction.gd"
 
 
+
 func _ready():
 	set_win_load()
 	testpersistantfolder()
@@ -9,6 +10,6 @@ func _ready():
 	config_environnement_load()
 	
 	#build_SimpleCAD()
-	yield(get_tree().create_timer(2), "timeout")
-	Global_Fonction.set_win_normale()
+#	yield(get_tree().create_timer(2), "timeout")
+#	set_win_normale()
 	pass
