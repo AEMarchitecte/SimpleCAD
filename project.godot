@@ -11,14 +11,14 @@ config_version=4
 [application]
 
 config/name="SimpleCAD"
-run/main_scene="res://scenes/ouverture.tscn"
+run/main_scene="res://scenes/Ouverture/ouverture.tscn"
 config/icon="res://graphique/icon.png"
 
 [autoload]
 
 Global_Variable="*res://autoload/global_variable.gd"
 Global_Fonction="*res://autoload/global_fonction.gd"
-Initialisation="*res://autoload/initialisation.gd"
+Global_Signal="*res://autoload/global_signal.gd"
 
 [display]
 
