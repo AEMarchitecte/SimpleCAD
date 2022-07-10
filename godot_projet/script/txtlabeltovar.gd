@@ -11,7 +11,6 @@ func _ready():
 		self.text = Global_Variable.get(self.text)
 		variable_valeur = self.text
 		
-func _process(delta):
+func _process(_delta):
 	self.text = Global_Variable.get(connect_to_variable)
 
-	pass

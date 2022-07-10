@@ -6,6 +6,7 @@
 [ext_resource path="res://graphique/theme/new_dynamicfont.res" type="DynamicFont" id=4]
 
 [node name="Node" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
@@ -23,16 +24,16 @@ __meta__ = {
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel"]
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 0.4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
 margin_left = 443.0
-margin_top = 100.0
+margin_top = 70.0
 margin_right = 580.0
-margin_bottom = 200.0
+margin_bottom = 170.0
 rect_min_size = Vector2( 0, 100 )
 alignment = 1
 
@@ -84,34 +85,87 @@ margin_top = 81.0
 margin_right = 137.0
 margin_bottom = 100.0
 size_flags_vertical = 10
-text = "build_message"
+text = "build_phase"
 align = 1
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-connect_to_variable = "build_message"
+connect_to_variable = "build_phase"
 
 [node name="BoxMessage" type="CenterContainer" parent="Panel"]
-anchor_top = 0.5
+anchor_top = 0.4
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/BoxMessage"]
-margin_left = 512.0
-margin_top = 150.0
-margin_right = 512.0
-margin_bottom = 150.0
+[node name="Premiere" type="VBoxContainer" parent="Panel/BoxMessage"]
+pause_mode = 2
+visible = false
+margin_left = 312.0
+margin_top = 115.0
+margin_right = 712.0
+margin_bottom = 244.0
 alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Panel/BoxMessage/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/BoxMessage/Premiere"]
+margin_right = 400.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 100 )
+text = "SimpleCAD vas créer un dossier sur votre ordinateur histoire de ne pas se perdre. Ne vous inquiété pas nous mettrons tout dedans et n'en créerons pas d'autre."
+align = 1
+autowrap = true
+
+[node name="Button" type="Button" parent="Panel/BoxMessage/Premiere"]
+margin_left = 332.0
+margin_top = 104.0
+margin_right = 400.0
+margin_bottom = 129.0
+size_flags_horizontal = 12
+text = "Suivant"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Licence" type="VBoxContainer" parent="Panel/BoxMessage"]
 visible = false
-margin_top = 23.0
-margin_right = 113.0
-margin_bottom = 42.0
+margin_left = 312.0
+margin_top = 113.0
+margin_right = 712.0
+margin_bottom = 246.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/BoxMessage/Licence"]
+margin_right = 400.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 100 )
+text = "Vous avez ouvert SimpleCAD plus de 5 fois. 
+Si cette application vous plaît merci de soutenir son developpeur en acheter une licence."
+align = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/BoxMessage/Licence"]
+margin_top = 104.0
+margin_right = 400.0
+margin_bottom = 133.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="key" type="LineEdit" parent="Panel/BoxMessage/Licence/HBoxContainer"]
+margin_right = 332.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+placeholder_text = "Cles de licence"
+
+[node name="Button" type="Button" parent="Panel/BoxMessage/Licence/HBoxContainer"]
+margin_left = 336.0
+margin_right = 400.0
+margin_bottom = 29.0
+size_flags_horizontal = 12
+text = "Valider"
 __meta__ = {
 "_edit_use_anchors_": false
 }

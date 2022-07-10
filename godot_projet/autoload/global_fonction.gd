@@ -1,13 +1,5 @@
 extends "res://autoload/global_variable.gd"
 
-func global_variable_printer():
-	print("--- global variable printer ---")
-	print("Localisation : ", locale)
-	print("Plateforme : ", model_name)
-	print("UID de la machine : ", machine_id)
-	print("--- --- ---")
-
-
 
 
 
@@ -70,7 +62,7 @@ func set_win_load():
 	OS.window_resizable = false
 	OS.set_window_per_pixel_transparency_enabled(true)
 	get_tree().get_root().set_transparent_background(true)
-	OS.window_size = Vector2(600, 400)
+	OS.window_size = Vector2(600, 350)
 	OS.center_window()
 	pass
 
