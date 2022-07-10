@@ -142,49 +142,7 @@ func config_user_attribut():
 
 
 
-func build_SimpleCAD():
-	
-	yield(get_tree().create_timer(2), "timeout")
-	Global_Variable.build_message = "Ouverture..."
-	
-	
-	
-	#Controle de la licence
-	yield(get_tree().create_timer(1), "timeout")
-	Global_Variable.build_message = "Contrôle de la licence..."
-	yield(get_tree().create_timer(1), "timeout")
-	nombre_ouverture = Global_Variable.nombre_ouverture
-	#print("Nombre ouverture restante = ", nombre_ouverture)
-	if nombre_ouverture <= 0:
-		
-		pass
-	
-	
-	
-	
-	#Controle de la version
-	yield(get_tree().create_timer(2), "timeout")
-	Global_Variable.build_message = "Recherche de mises à jours..."
-	yield(get_tree().create_timer(5), "timeout")
-		#mise à jour ou non
-		
-	
-	
-	yield(get_tree().create_timer(5), "timeout")
-	Global_Variable.build_message = "Construction de l'environnement de travail"
-	#Construction de l'environnement de travail :
-		#Construction du fichier de theme
-		#Construction du fichier de raccourcis clavier
-		#Analyse des dossiers de la bibliothèque…
-		#Construction de la bibliothèque
-		
-		
-		
-	
-	yield(get_tree().create_timer(2), "timeout")
-	Global_Variable.build_message = "Lancement !"
-	
-	set_win_normale()
+
 
 
 

@@ -23,32 +23,44 @@ __meta__ = {
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
-margin_left = 412.0
-margin_top = 250.0
-margin_right = 612.0
-margin_bottom = 350.0
-rect_min_size = Vector2( 200, 100 )
+margin_left = 443.0
+margin_top = 100.0
+margin_right = 580.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 100 )
 alignment = 1
 
-[node name="Label_name" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
-margin_top = 11.0
-margin_right = 200.0
-margin_bottom = 42.0
+[node name="BoxTitre" type="VBoxContainer" parent="Panel/CenterContainer/VBoxContainer"]
+margin_right = 137.0
+margin_bottom = 54.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label_name" type="Label" parent="Panel/CenterContainer/VBoxContainer/BoxTitre"]
+margin_right = 137.0
+margin_bottom = 31.0
 custom_fonts/font = ExtResource( 4 )
 text = "app_name"
 align = 1
 script = ExtResource( 3 )
 
-[node name="Label_version" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
-margin_top = 46.0
-margin_right = 200.0
-margin_bottom = 65.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/CenterContainer/VBoxContainer/BoxTitre"]
+margin_top = 35.0
+margin_right = 137.0
+margin_bottom = 54.0
+alignment = 1
+
+[node name="Label_version" type="Label" parent="Panel/CenterContainer/VBoxContainer/BoxTitre/HBoxContainer"]
+margin_right = 90.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 5
 text = "app_version"
 align = 1
 script = ExtResource( 3 )
@@ -56,10 +68,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label_localisation" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
-margin_top = 69.0
-margin_right = 200.0
-margin_bottom = 88.0
+[node name="Label_localisation" type="Label" parent="Panel/CenterContainer/VBoxContainer/BoxTitre/HBoxContainer"]
+margin_left = 94.0
+margin_right = 137.0
+margin_bottom = 19.0
 text = "locale"
 align = 1
 script = ExtResource( 3 )
@@ -67,16 +79,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Separator" type="HSeparator" parent="Panel/CenterContainer/VBoxContainer"]
-visible = false
-margin_top = 46.0
-margin_right = 200.0
-margin_bottom = 50.0
-
 [node name="Label_action" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
-visible = false
 margin_top = 81.0
-margin_right = 200.0
+margin_right = 137.0
 margin_bottom = 100.0
 size_flags_vertical = 10
 text = "build_message"
@@ -87,11 +92,26 @@ __meta__ = {
 }
 connect_to_variable = "build_message"
 
-[node name="ProgressBar" type="ProgressBar" parent="Panel/CenterContainer/VBoxContainer"]
+[node name="BoxMessage" type="CenterContainer" parent="Panel"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/BoxMessage"]
+margin_left = 512.0
+margin_top = 150.0
+margin_right = 512.0
+margin_bottom = 150.0
+alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/BoxMessage/VBoxContainer"]
 visible = false
-margin_top = 63.0
-margin_right = 200.0
-margin_bottom = 82.0
+margin_top = 23.0
+margin_right = 113.0
+margin_bottom = 42.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -8,7 +8,7 @@ onready var name_version = app_name+" "+app_version
 onready var user_data_dir = OS.get_user_data_dir()
 onready var simpleCAD_data_dir = user_data_dir+"/"+name_version
 onready var nombre_ouverture = 0
-onready var build_message = "..."
+onready var build_message = "Ouverture..."
 
 const cfg_env_name = "environement.cfg"
 const cfg_use_name = "utilisateurs.cfg"
@@ -18,6 +18,7 @@ onready var cfg_env_path = simpleCAD_data_dir+"/"+cfg_env_name
 onready var cfg_use_path = simpleCAD_data_dir+"/"+cfg_use_name
 onready var cfg_lic_path = simpleCAD_data_dir+"/"+cfg_lic_name
 
+onready var bibliotheque_path = ""
 
 # variable de la machine
 var machine_id = OS.get_unique_id()
@@ -58,9 +59,9 @@ var defaut_user_shortcuts = {
 	cute = "k",
 	}
 var defaut_user_theme = {
-	app_color_pp = "c",
-	app_color_sp = "c",
-	app_color_user = "c",
+	color_p1 = Color.darkgray,
+	color_p2 = Color.ghostwhite,
+	color_user = Color.black,
 	}
 var defaut_user_settings = {
 	unit_esp_drawing = "cm",
