@@ -64,7 +64,7 @@ func load_encrypt_file():
 	var err = config.load_encrypted(cfg_lic_path, PoolByteArray(array))
 	if err != OK :
 		config.set_value("data", "UID", OS.get_unique_id())
-		config.set_value("data", "nombre_ouverture", 5)
+		config.set_value("data", "nombre_ouverture", 25)
 		config.save_encrypted(cfg_lic_path, PoolByteArray(array))
 		config.clear()
 		print("Fichier créer avec succès = ", cfg_lic_name)
@@ -72,10 +72,13 @@ func load_encrypt_file():
 		for data in config.get_sections():
 			var UID = config.get_value(data, "UID")
 			var nombre_ouverture = config.get_value(data, "nombre_ouverture")
+			print("Variables de licence attribuées avec succès...")
 			nombre_ouverture = nombre_ouverture-1
-			if nombre_ouverture <= 0:
-				nombre_ouverture = 0
 			print("Nombre ouverture restante = ", nombre_ouverture)
+			if nombre_ouverture <= 0:
+				OS.alert(message["more_opening_message"], message["more_opening_titre"])
+				get_tree().quit()
+				#nombre_ouverture = 0
 			config.set_value("data", "nombre_ouverture", nombre_ouverture)
 			config.save_encrypted(cfg_lic_path, PoolByteArray(array))
 
@@ -140,19 +143,48 @@ func config_user_attribut():
 
 
 func build_SimpleCAD():
+	
+	yield(get_tree().create_timer(2), "timeout")
+	Global_Variable.build_message = "Ouverture..."
+	
+	
+	
 	#Controle de la licence
-	if nombre_ouverture == 0:
-		OS.alert(message["more_opening_message"], message["more_opening_titre"])
-		get_tree().quit()
+	yield(get_tree().create_timer(1), "timeout")
+	Global_Variable.build_message = "Contrôle de la licence..."
+	yield(get_tree().create_timer(1), "timeout")
+	nombre_ouverture = Global_Variable.nombre_ouverture
+	#print("Nombre ouverture restante = ", nombre_ouverture)
+	if nombre_ouverture <= 0:
 		
+		pass
+	
+	
+	
+	
 	#Controle de la version
+	yield(get_tree().create_timer(2), "timeout")
+	Global_Variable.build_message = "Recherche de mises à jours..."
+	yield(get_tree().create_timer(5), "timeout")
 		#mise à jour ou non
+		
+	
+	
+	yield(get_tree().create_timer(5), "timeout")
+	Global_Variable.build_message = "Construction de l'environnement de travail"
 	#Construction de l'environnement de travail :
 		#Construction du fichier de theme
 		#Construction du fichier de raccourcis clavier
 		#Analyse des dossiers de la bibliothèque…
 		#Construction de la bibliothèque
-	pass
+		
+		
+		
+	
+	yield(get_tree().create_timer(2), "timeout")
+	Global_Variable.build_message = "Lancement !"
+	
+	set_win_normale()
 
 
 

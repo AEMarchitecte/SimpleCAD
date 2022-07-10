@@ -8,6 +8,7 @@ onready var name_version = app_name+" "+app_version
 onready var user_data_dir = OS.get_user_data_dir()
 onready var simpleCAD_data_dir = user_data_dir+"/"+name_version
 onready var nombre_ouverture = 0
+onready var build_message = "..."
 
 const cfg_env_name = "environement.cfg"
 const cfg_use_name = "utilisateurs.cfg"
@@ -33,10 +34,6 @@ var message = {
 	first_opening_message = "Vous ouvrez " + str(name_version) + " pour la premier",
 	more_opening_titre = "Attention",
 	more_opening_message = "Vous avez ouvert SimpleCAD plus de 5 fois. Si cette application vous plaît merci d'acheter une licence",
-
-	
-	
-	
 	}
 
 
