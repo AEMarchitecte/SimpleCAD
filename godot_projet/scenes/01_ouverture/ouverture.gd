@@ -1,16 +1,66 @@
 extends "res://autoload/global_fonction.gd"
 
-
 func _ready():
 	set_win_load()
-	testpersistantfolder()
+	build_process()
+
+
+func build_process():
 	
-	load_config_files()
 	
+	#controle du dossier de support...
+	test_support_folder()
+	
+	#Chargement des fichiers de configuration
+	config_licence_load()
+	config_user_load()
+	config_environnement_load()
+	
+	#Construction du theme
 	build_theme()
+	yield(get_tree().create_timer(2), "timeout")
+	
+	
+	#Controle de la licence
+	Global_Variable.build_message = "Contrôle de la licence..."
+	yield(get_tree().create_timer(1), "timeout")
+	licence_controler()
+	
+	
+	#Controle de la version
+	Global_Variable.build_message = "Recherche de mises à jours..."
+	yield(get_tree().create_timer(2), "timeout")
+	version_controler()
+	
+	
+	###
+	
+	
+	#Construction de l'environnement de travail :
+	Global_Variable.build_message = "Construction de l'environnement de travail..."
+	yield(get_tree().create_timer(2), "timeout")
+	#Construction du fichier de raccourcis clavier
+	#Analyse des dossiers de la bibliothèque…
+	
+	#Construction des ressources de la bibliotheque
+	# func 
 	build_bibliotheque()
-	build_SimpleCAD()
-	pass
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	#Affichage du lanceur...
+	Global_Variable.build_message = "Lancement !"
+	yield(get_tree().create_timer(0.5), "timeout")
+	get_tree().change_scene("res://scenes/02_lanceur/lanceur.tscn")
 
 
 
@@ -20,16 +70,16 @@ func _ready():
 
 
 
-
-func testpersistantfolder():
+# teste du dossier de support...
+func test_support_folder():
 	var dir = Directory.new()
 	if dir.dir_exists(simpleCAD_data_dir) == false:
 		print("Dossier ", name_version, " non trouvé...")
-		makepersistantfolder()
+		build_support_folder()
 	else:
 		print("Dossier ", name_version, " trouvé...")
 
-func makepersistantfolder():
+func build_support_folder():
 	OS.alert(message["first_opening_titre"], message["first_opening_message"])
 	var dir = Directory.new()
 	dir.open(user_data_dir)
@@ -37,133 +87,35 @@ func makepersistantfolder():
 	print("Dossier "+ name_version +" créer avec succés...")
 
 
-
-
-
-
-func load_config_files():
-	load_encrypt_file()
-	config_user_load()
-	config_environnement_load()
-
-func build_theme():
-	var theme = load("res://graphique/theme/SimpleCAD.theme")
-	var panel = load("res://graphique/theme/Panel_base.stylebox")
-	var color_p1 = Global_Variable.user_theme["color_p1"]
-	var color_p2 = Global_Variable.user_theme["color_p2"]
-	var color_user = Global_Variable.user_theme["color_user"]
-	
-	theme.set_color("font_color", "Label", color_p1)
-	panel.set_bg_color(color_p2)
-
-func build_shrotcut():
-	pass
-
-
-
-
-
-
-
-func build_bibliotheque():
-	
-	print(str(bibliotheque_path))
-	print(bibliotheque_path)
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-func build_SimpleCAD():
-	
-	yield(get_tree().create_timer(2), "timeout")
-	Global_Variable.build_message = "Ouverture..."
-	
-	
-	
-	#Controle de la licence
-	yield(get_tree().create_timer(1), "timeout")
-	Global_Variable.build_message = "Contrôle de la licence..."
-	yield(get_tree().create_timer(1), "timeout")
-	nombre_ouverture = Global_Variable.nombre_ouverture
-	#print("Nombre ouverture restante = ", nombre_ouverture)
-	if nombre_ouverture <= 0:
-		
-		pass
-	
-	
-	
-	
-	#Controle de la version
-	yield(get_tree().create_timer(2), "timeout")
-	Global_Variable.build_message = "Recherche de mises à jours..."
-	yield(get_tree().create_timer(5), "timeout")
-		#mise à jour ou non
-		
-	
-	
-	yield(get_tree().create_timer(5), "timeout")
-	Global_Variable.build_message = "Construction de l'environnement de travail"
-	#Construction de l'environnement de travail :
-		#Construction du fichier de theme
-		#Construction du fichier de raccourcis clavier
-		#Analyse des dossiers de la bibliothèque…
-		#Construction de la bibliothèque
-		
-		
-		
-	
-	yield(get_tree().create_timer(2), "timeout")
-	Global_Variable.build_message = "Lancement !"
-	yield(get_tree().create_timer(1), "timeout")
-	
-	get_tree().change_scene("res://scenes/02_lanceur/lanceur.tscn")
-	
-	
-	
-	
-	
-	
-	
-
-
-### CONFIG LICENCE FILE ###
-
-func load_encrypt_file():
+# Chargement du fichier de licence...
+func config_licence_load():
 	var config = ConfigFile.new()
 	var array = OS.get_unique_id().sha256_buffer()
-	var err = config.load_encrypted(cfg_lic_path, PoolByteArray(array))
-	if err != OK :
-		config.set_value("data", "UID", OS.get_unique_id())
-		config.set_value("data", "nombre_ouverture", 25)
-		config.save_encrypted(cfg_lic_path, PoolByteArray(array))
-		config.clear()
-		print("Fichier créer avec succès = ", cfg_lic_name)
+	var lic_cfg = config.load_encrypted(cfg_lic_path, PoolByteArray(array))
+	if lic_cfg != OK :
+		config_licence_create()
 	else :
-		for data in config.get_sections():
-			var UID = config.get_value(data, "UID")
-			var nombre_ouverture = config.get_value(data, "nombre_ouverture")
-			print("Variables de licence attribuées avec succès...")
-			nombre_ouverture = nombre_ouverture-1
-			print("Nombre ouverture restante = ", nombre_ouverture)
-			if nombre_ouverture <= 0:
-				OS.alert(message["more_opening_message"], message["more_opening_titre"])
-				get_tree().quit()
-				#nombre_ouverture = 0
-			config.set_value("data", "nombre_ouverture", nombre_ouverture)
-			config.save_encrypted(cfg_lic_path, PoolByteArray(array))
+		config_licence_attribut()
+
+func config_licence_create():
+	var array = OS.get_unique_id().sha256_buffer()
+	var config = ConfigFile.new()
+	config.set_value("data", "UID", OS.get_unique_id())
+	config.set_value("data", "nombre_ouverture", 0)
+	config.save_encrypted(cfg_lic_path, PoolByteArray(array))
+	config.clear()
+	print("Fichier créer avec succès = ", cfg_lic_name)
+
+func config_licence_attribut():
+	var array = OS.get_unique_id().sha256_buffer()
+	var config = ConfigFile.new()
+	config.load_encrypted(cfg_lic_path, PoolByteArray(array))
+	for data in config.get_sections():
+			Global_Variable.nombre_ouverture = config.get_value(data, "nombre_ouverture")
+	print("Variables de licence attribuées avec succès... ", Global_Variable.nombre_ouverture)
 
 
-
-### CONFIG ENVIRONNEMENT FILE ###
-
+# Chargement du fichier de l'environnement...
 func config_environnement_load():
 	var config = ConfigFile.new()
 	var env_cfg = config.load(cfg_env_path)
@@ -174,21 +126,20 @@ func config_environnement_load():
 
 func config_environnement_create():
 	var config = ConfigFile.new()
-	config.set_value("data", "last_user", "Baptiste")
-	config.set_value("data", "WWW", 111)
+	config.set_value("data", "last_user", "User0")
+	config.set_value("data", "bibliotheque_path", "")
 	config.save(cfg_env_path)
 	print("Fichier créer avec succès = ", cfg_env_name)
-	
+
 func config_environnement_attribut():
 	var config = ConfigFile.new()
 	config.load(cfg_env_path)
 	for data in config.get_sections():
-			var last_user = config.get_value(data, "last_user")
+			Global_Variable.last_user = config.get_value(data, "last_user")
 	print("Variables d'environnement attribuées avec succès...")
 
 
-### CONFIG USERS FILE ###
-
+# Chargement du fichier des utilisateurs...
 func config_user_load():
 	var config = ConfigFile.new()
 	var use_cfg = config.load(cfg_use_path)
@@ -196,7 +147,6 @@ func config_user_load():
 		config_user_create()
 	else: 
 		config_user_attribut()
-		
 
 func config_user_create():
 	var config = ConfigFile.new()
@@ -213,6 +163,56 @@ func config_user_attribut():
 	for data in config.get_sections():
 			last_user = config.get_value(data, "last_user")
 	print("Variables de l'utilisateur attribuées avec succès...")
+
+
+
+
+
+
+
+
+
+func licence_controler():
+	
+	var nb = Global_Variable.nombre_ouverture+1
+	print("Nombre ouverture = ", nb)
+	
+	if nb > 25:
+		OS.alert(
+			Global_Variable.message["more_opening_message"], 
+			Global_Variable.message["more_opening_titre"])
+		get_tree().quit()
+		
+	else:
+		var array = OS.get_unique_id().sha256_buffer()
+		var config = ConfigFile.new()
+		config.load_encrypted(cfg_lic_path, PoolByteArray(array))
+		config.set_value("data", "nombre_ouverture", nb)
+		config.save_encrypted(cfg_lic_path, PoolByteArray(array))
+		print("Actualisation du nombre d'ouverture... OK!")
+
+
+
+func version_controler():
+	pass
+
+func build_theme():
+	var theme = load("res://graphique/theme/SimpleCAD.theme")
+	var panel = load("res://graphique/theme/Panel_base.stylebox")
+	var color_p1 = Global_Variable.user_theme["color_p1"]
+	var color_p2 = Global_Variable.user_theme["color_p2"]
+	var color_user = Global_Variable.user_theme["color_user"]
+	
+	theme.set_color("font_color", "Label", color_p1)
+	panel.set_bg_color(color_p2)
+
+func build_shrotcut():
+	pass
+
+func build_bibliotheque():
+	print(str(bibliotheque_path))
+	print(bibliotheque_path)
+	
 
 
 

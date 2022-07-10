@@ -10,9 +10,9 @@ onready var simpleCAD_data_dir = user_data_dir+"/"+name_version
 onready var nombre_ouverture = 0
 onready var build_message = "Ouverture..."
 
-const cfg_env_name = "environement.cfg"
-const cfg_use_name = "utilisateurs.cfg"
-const cfg_lic_name = "licence.cfg"
+const cfg_env_name = "env.cfg"
+const cfg_use_name = "use.cfg"
+const cfg_lic_name = "lic.cfg"
 
 onready var cfg_env_path = simpleCAD_data_dir+"/"+cfg_env_name
 onready var cfg_use_path = simpleCAD_data_dir+"/"+cfg_use_name
@@ -30,7 +30,7 @@ var model_name = OS.get_name()
 onready var current_space = "lanceur"
 
 
-var message = {
+onready var message = {
 	first_opening_titre = str(app_name) + " vas créer un dossier sur votre ordinateur histoire de ne pas se perdre. Ne vous inquiété pas nous mettrons tout dedans et n'en créerons pas d'autre ",
 	first_opening_message = "Vous ouvrez " + str(name_version) + " pour la premier",
 	more_opening_titre = "Attention",
