@@ -12,7 +12,8 @@ config_version=4
 
 config/name="SimpleCAD"
 run/main_scene="res://scenes/01_ouverture/ouverture.tscn"
-config/icon="res://graphique/icon.png"
+config/icon="res://graphique/appicon.png"
+config/windows_native_icon="res://graphique/appicon.ico"
 
 [autoload]
 

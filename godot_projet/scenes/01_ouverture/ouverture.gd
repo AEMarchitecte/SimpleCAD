@@ -36,6 +36,10 @@ func build_process():
 	Global_Variable.build_phase = "Contrôle de la licence . . ."
 	yield(get_tree().create_timer(1), "timeout")
 	
+	
+	
+	
+	
 	if key_is_valide() == true:
 		Global_Variable.build_phase = "Clef de licence valide !"
 		yield(get_tree().create_timer(2), "timeout")
@@ -45,17 +49,12 @@ func build_process():
 			yield($Panel/BoxMessage/Licence/HBoxContainer/Button, "pressed")
 			var key_enter = $Panel/BoxMessage/Licence/HBoxContainer/key.text
 			licence_key_save(key_enter)
-			
+
 			# Porte de sortie...
 			box_licence.visible = false
 			Global_Variable.build_phase = "Clef de licence non valide !"
 			fermeture()
 			yield(get_tree().create_timer(10), "timeout")
-			
-			
-			
-
-
 	
 	
 	
@@ -82,7 +81,6 @@ func build_process():
 	
 	
 	
-	#get_tree().quit()
 	#Affichage du lanceur...
 	Global_Variable.build_phase = "Lancement !"
 	yield(get_tree().create_timer(0.5), "timeout")
