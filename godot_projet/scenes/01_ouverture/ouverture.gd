@@ -2,89 +2,95 @@ extends "res://autoload/global_fonction.gd"
 
 onready var box_premiere = get_node("Panel/BoxMessage/Premiere")
 onready var box_licence = get_node("Panel/BoxMessage/Licence")
-
+onready var btn_update = get_node("Panel/BoxMessage/Button")
 
 func _ready():
 	set_win_load()
-	build_process()
+	build_process(1)
 
 
-func build_process():
-	
-	build_theme()
-	ouverture()
-	yield(get_tree().create_timer(2.5), "timeout")
-	
-	#controle du dossier de support...
-	if test_support_folder() == false:
-		box_premiere.visible = true
-		Global_Variable.build_phase = "Première ouverture . . ."
-		yield($Panel/BoxMessage/Premiere/Button, "pressed")
-		box_premiere.visible = false
-		build_support_folder()
-	
-	#Chargement des fichiers de configuration
-	config_licence_load()
-	config_user_load()
-	config_environnement_load()
-	#Construction du theme
-	build_theme()
-	yield(get_tree().create_timer(2), "timeout")
-	
-	
-	#Controle de la licence
-	Global_Variable.build_phase = "Contrôle de la licence . . ."
-	yield(get_tree().create_timer(1), "timeout")
-	
-	
-	
-	
-	
-	if key_is_valide() == true:
-		Global_Variable.build_phase = "Clef de licence valide !"
+func build_process(valeur):
+	if 0:
+		build_theme()
+		ouverture()
+		yield(get_tree().create_timer(2.5), "timeout")
+		
+		#controle du dossier de support...
+		if test_support_folder() == false:
+			box_premiere.visible = true
+			Global_Variable.build_phase = "Première ouverture . . ."
+			yield($Panel/BoxMessage/Premiere/Button, "pressed")
+			box_premiere.visible = false
+			build_support_folder()
+		
+		#Chargement des fichiers de configuration
+		config_licence_load()
+		config_user_load()
+		config_environnement_load()
+		#Construction du theme
+		build_theme()
 		yield(get_tree().create_timer(2), "timeout")
-	else:
-		if licence_controler() == false:
-			box_licence.visible = true
-			yield($Panel/BoxMessage/Licence/HBoxContainer/Button, "pressed")
-			var key_enter = $Panel/BoxMessage/Licence/HBoxContainer/key.text
-			licence_key_save(key_enter)
+		
+		
+		#Controle de la licence
+		Global_Variable.build_phase = "Contrôle de la licence . . ."
+		yield(get_tree().create_timer(1), "timeout")
+		
+		
+		
+		
+		
+		if key_is_valide() == true:
+			Global_Variable.build_phase = "Clef de licence valide !"
+			yield(get_tree().create_timer(2), "timeout")
+		else:
+			if licence_controler() == false:
+				box_licence.visible = true
+				yield($Panel/BoxMessage/Licence/HBoxContainer/Button, "pressed")
+				var key_enter = $Panel/BoxMessage/Licence/HBoxContainer/key.text
+				licence_key_save(key_enter)
 
-			# Porte de sortie...
-			box_licence.visible = false
-			Global_Variable.build_phase = "Clef de licence non valide !"
-			fermeture()
-			yield(get_tree().create_timer(10), "timeout")
+				# Porte de sortie...
+				box_licence.visible = false
+				Global_Variable.build_phase = "Clef de licence non valide !"
+				fermeture()
+				yield(get_tree().create_timer(10), "timeout")
 	
 	
 	
 	
-	
-	#Controle de la version
-	Global_Variable.build_phase = "Recherche de mises à jours . . ."
-	yield(get_tree().create_timer(2), "timeout")
-	version_controler()
+	if 1:
+		#Controle de la version
+		Global_Variable.build_phase = "Recherche de mises à jours . . ."
+		yield(get_tree().create_timer(1), "timeout")
+		
+		delete_childrens($Panel/BoxMessage)
+		var next_scene_resource = load("res://scenes/01_ouverture/update_app.tscn")
+		var next_scene = next_scene_resource.instance()
+		$Panel/BoxMessage.add_child(next_scene)
 	
 	
 	###
 	
 	
 	#Construction de l'environnement de travail :
-	Global_Variable.build_phase = "Construction de l'environnement de travail . . ."
-	yield(get_tree().create_timer(2), "timeout")
+	#Global_Variable.build_phase = "Construction de l'environnement de travail . . ."
+	#yield(get_tree().create_timer(2), "timeout")
+	
+	
 	#Construction du fichier de raccourcis clavier
 	#Analyse des dossiers de la bibliothèque…
 	
 	#Construction des ressources de la bibliotheque
 	# func 
-	build_bibliotheque()
+	#build_bibliotheque()
 	
 	
 	
 	#Affichage du lanceur...
-	Global_Variable.build_phase = "Lancement !"
-	yield(get_tree().create_timer(0.5), "timeout")
-	get_tree().change_scene("res://scenes/02_lanceur/lanceur.tscn")
+	#Global_Variable.build_phase = "Lancement !"
+	#yield(get_tree().create_timer(0.5), "timeout")
+	#get_tree().change_scene("res://scenes/02_lanceur/lanceur.tscn")
 
 
 
@@ -129,6 +135,25 @@ func build_support_folder():
 	print("Dossier "+ name_version +" créer avec succés...")
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Chargement du fichier de licence...
 func config_licence_load():
 	var config = ConfigFile.new()
@@ -158,6 +183,20 @@ func config_licence_attribut():
 	print("Variables de licence attribuées avec succès... ")
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Chargement du fichier de l'environnement...
 func config_environnement_load():
 	var config = ConfigFile.new()
@@ -180,6 +219,14 @@ func config_environnement_attribut():
 	for data in config.get_sections():
 			Global_Variable.last_user = config.get_value(data, "last_user")
 	print("Variables d'environnement attribuées avec succès...")
+
+
+
+
+
+
+
+
 
 
 # Chargement du fichier des utilisateurs...
@@ -206,6 +253,18 @@ func config_user_attribut():
 	for data in config.get_sections():
 			last_user = config.get_value(data, "last_user")
 	print("Variables de l'utilisateur attribuées avec succès...")
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -242,13 +301,36 @@ func licence_key_save(key_enter):
 
 func key_is_valide() -> bool:
 	var key_register = Global_Variable.licence_key
-	var key_true = OS.get_unique_id().sha256_text()
+	var key_true = "1234"
 	#print("key_register = ", key_register)
 	print("key_true = ", key_true)
 	if key_register == key_true:
 		return true
 	else:
 		return false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -299,3 +381,6 @@ func fermeture():
 	get_tree().quit()
 	
 
+func _on_Button_pressed():
+	get_tree().quit()
+	pass # Replace with function body.
