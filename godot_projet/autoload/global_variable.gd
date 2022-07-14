@@ -9,8 +9,9 @@ onready var user_data_dir = OS.get_user_data_dir()
 onready var simpleCAD_data_dir = user_data_dir+"/"+name_version
 onready var nombre_ouverture = 0
 onready var licence_key = ""
-onready var build_phase = "Ouverture..."
+onready var build_phase = ""
 onready var app_pause = false
+onready var reload_app = false
 
 const cfg_env_name = "env.cfg"
 const cfg_use_name = "use.cfg"

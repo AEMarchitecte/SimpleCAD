@@ -1,0 +1,28 @@
+[gd_scene format=2]
+
+[node name="Premiere" type="VBoxContainer"]
+pause_mode = 2
+margin_left = 312.0
+margin_top = 115.0
+margin_right = 712.0
+margin_bottom = 244.0
+alignment = 1
+
+[node name="Label" type="Label" parent="."]
+margin_right = 400.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 100 )
+text = "SimpleCAD vas créer un dossier sur votre ordinateur histoire de ne pas se perdre. Ne vous inquiété pas nous mettrons tout dedans et n'en créerons pas d'autre."
+align = 1
+autowrap = true
+
+[node name="Button" type="Button" parent="."]
+margin_left = 332.0
+margin_top = 104.0
+margin_right = 400.0
+margin_bottom = 129.0
+size_flags_horizontal = 12
+text = "Suivant"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/openning/openning_script.gd" type="Script" id=1]
+[ext_resource path="res://script/txtlabeltovar.gd" type="Script" id=2]
+[ext_resource path="res://graphique/theme/SimpleCAD.theme" type="Theme" id=3]
+[ext_resource path="res://graphique/theme/new_dynamicfont.res" type="DynamicFont" id=4]
+[ext_resource path="res://script/auto_quit.gd" type="Script" id=5]
+
+[node name="Openning" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 0.4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+margin_left = 443.0
+margin_top = 70.0
+margin_right = 580.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 0, 100 )
+alignment = 1
+
+[node name="BoxTitre" type="VBoxContainer" parent="Panel/CenterContainer/VBoxContainer"]
+margin_right = 137.0
+margin_bottom = 54.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label_name" type="Label" parent="Panel/CenterContainer/VBoxContainer/BoxTitre"]
+margin_right = 137.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 4 )
+text = "app_name"
+align = 1
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/CenterContainer/VBoxContainer/BoxTitre"]
+margin_top = 35.0
+margin_right = 137.0
+margin_bottom = 54.0
+alignment = 1
+
+[node name="Label_version" type="Label" parent="Panel/CenterContainer/VBoxContainer/BoxTitre/HBoxContainer"]
+margin_right = 90.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 5
+text = "app_version"
+align = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_localisation" type="Label" parent="Panel/CenterContainer/VBoxContainer/BoxTitre/HBoxContainer"]
+margin_left = 94.0
+margin_right = 137.0
+margin_bottom = 19.0
+text = "locale"
+align = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_action" type="Label" parent="Panel/CenterContainer/VBoxContainer" groups=["Build phase"]]
+margin_top = 81.0
+margin_right = 137.0
+margin_bottom = 100.0
+size_flags_vertical = 10
+text = "build_phase"
+align = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+connect_to_variable = "build_phase"
+
+[node name="BoxMessage" type="CenterContainer" parent="Panel"]
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fermer" type="Button" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+focus_mode = 0
+enabled_focus_mode = 0
+text = "X"
+flat = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

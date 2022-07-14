@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/openning/sub/Licence_controler.gd" type="Script" id=1]
+
+[node name="Licence_controler" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="box" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -64.0
+margin_right = 200.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="box"]
+margin_right = 400.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 100 )
+text = "Vous avez ouvert SimpleCAD plus de 5 fois. 
+Si cette application vous plaît merci de soutenir son developpeur en acheter une licence."
+align = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="box"]
+margin_top = 104.0
+margin_right = 400.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="key" type="LineEdit" parent="box/HBoxContainer"]
+margin_right = 340.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Cles de licence"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Button" type="Button" parent="box/HBoxContainer"]
+margin_left = 344.0
+margin_right = 400.0
+margin_bottom = 24.0
+size_flags_horizontal = 12
+text = "Valider"
+__meta__ = {
+"_edit_use_anchors_": false
+}

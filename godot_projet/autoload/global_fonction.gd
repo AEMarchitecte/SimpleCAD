@@ -29,7 +29,10 @@ static func delete_childrens(node):
 		node.remove_child(n)
 		n.queue_free()
 
-
+func load_scene_at(path, node):
+	var scene_resource = load(path)
+	var next_scene = scene_resource.instance()
+	node.add_child(next_scene)
 
 
 
@@ -51,7 +54,7 @@ func unzip(sourceFile,destination):
 		
 	ProjectSettings.load_resource_pack(zip_file)
 	
-	var i = 0
+	var _i = 0
 	for f in gdunzip.files:
 		unzip_file(f)
 
@@ -84,8 +87,8 @@ func test_file(path):
 
 
 
-
-
+func attent(x: int):
+	yield(get_tree().create_timer(x), "timeout")
 
 
 
@@ -118,7 +121,7 @@ func set_win_normale():
 	OS.window_resizable = true
 	OS.set_window_per_pixel_transparency_enabled(false)
 	get_tree().get_root().set_transparent_background(false)
-	OS.window_size = Vector2(1200, 800)
+	OS.window_size = Vector2(1000, 600)
 	OS.center_window()
 	OS.set_window_title(str(name_version+" - "+current_space))
 	pass
