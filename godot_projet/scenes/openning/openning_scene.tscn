@@ -103,6 +103,7 @@ __meta__ = {
 }
 
 [node name="Fermer" type="Button" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
