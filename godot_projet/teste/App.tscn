@@ -1,0 +1,464 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://scenes/processus/quit/Quitter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/processus/debug/Bug.tscn" type="PackedScene" id=2]
+[ext_resource path="res://script/move_panel.gd" type="Script" id=3]
+[ext_resource path="res://graphique/theme/panels/Panel_carre.stylebox" type="StyleBox" id=5]
+[ext_resource path="res://script/view_scn_if_pressed.gd" type="Script" id=6]
+[ext_resource path="res://scenes/espaces/options/application/Application.tscn" type="PackedScene" id=9]
+[ext_resource path="res://class/ConteneurBoutons.gd" type="Script" id=11]
+[ext_resource path="res://graphique/illustrations/zen.png" type="Texture" id=12]
+[ext_resource path="res://class/ConteneurScenes.gd" type="Script" id=13]
+[ext_resource path="res://graphique/icones/espaces/icons8-contenu-24.png" type="Texture" id=14]
+[ext_resource path="res://graphique/icones/espaces/configuration-application-24.png" type="Texture" id=15]
+[ext_resource path="res://scenes/espaces/organiser/Organiser.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/espaces/dessiner/Dessiner.tscn" type="PackedScene" id=17]
+[ext_resource path="res://graphique/icones/espaces/icons8-livre-ouvert-24.png" type="Texture" id=18]
+[ext_resource path="res://graphique/icones/window/icons8-plus-24.png" type="Texture" id=19]
+[ext_resource path="res://scenes/espaces/publier/Publier.tscn" type="PackedScene" id=20]
+[ext_resource path="res://graphique/theme/SimpleCAD.theme" type="Theme" id=21]
+[ext_resource path="res://class/Bouton.gd" type="Script" id=22]
+[ext_resource path="res://graphique/icones/espaces/configuration-fichier-24.png" type="Texture" id=23]
+[ext_resource path="res://scenes/espaces/options/fichier/Fichier.tscn" type="PackedScene" id=24]
+[ext_resource path="res://graphique/icones/window/icons8-bouée-de-sauvetage-24.png" type="Texture" id=25]
+[ext_resource path="res://graphique/icones/window/icons8-macos-fermer-24.png" type="Texture" id=27]
+[ext_resource path="res://graphique/icones/window/icons8-hiberner-24.png" type="Texture" id=29]
+[ext_resource path="res://graphique/icones/window/bug-24.png" type="Texture" id=31]
+[ext_resource path="res://scenes/processus/help/Aide.tscn" type="PackedScene" id=32]
+[ext_resource path="res://scenes/App.gd" type="Script" id=33]
+[ext_resource path="res://graphique/icones/espaces/icons8-rocket-lancée-24.png" type="Texture" id=34]
+[ext_resource path="res://graphique/icones/espaces/icons8-create-icon-24.png" type="Texture" id=35]
+[ext_resource path="res://graphique/illustrations/ombre.png" type="Texture" id=36]
+[ext_resource path="res://scenes/espaces/lanceur/launcher_scene.tscn" type="PackedScene" id=37]
+[ext_resource path="res://script/signal_on_clique.gd" type="Script" id=38]
+[ext_resource path="res://script/txtlabeltovar.gd" type="Script" id=39]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+
+[node name="SimpleCAD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 21 )
+script = ExtResource( 33 )
+
+[node name="Fond" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Fond"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Fond/CenterContainer"]
+margin_left = 262.0
+margin_top = 112.0
+margin_right = 762.0
+margin_bottom = 487.0
+texture = ExtResource( 12 )
+
+[node name="Panel" type="Panel" parent="Fond"]
+self_modulate = Color( 1, 1, 1, 0.784314 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Conteneurs" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConteneurLanceur" type="Control" parent="Conteneurs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+identifiant = 1
+mode = "Remplace"
+
+[node name="ConteneurCAD" type="Control" parent="Conteneurs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+identifiant = 2
+mode = "Remplace"
+
+[node name="ConteneurOption" type="Control" parent="Conteneurs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+identifiant = 3
+mode = "Remplace"
+
+[node name="PilePrincipale" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="PilePrincipale"]
+margin_right = 1024.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_styles/panel = ExtResource( 5 )
+
+[node name="Fenetre" type="Control" parent="PilePrincipale/Panel"]
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 30 )
+script = ExtResource( 3 )
+
+[node name="BoiteWindow" type="HBoxContainer" parent="PilePrincipale/Panel/Fenetre"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_right = -8.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionWindow" type="HBoxContainer" parent="PilePrincipale/Panel/Fenetre/BoiteWindow"]
+margin_top = 15.0
+margin_right = 8.0
+margin_bottom = 15.0
+size_flags_horizontal = 5
+size_flags_vertical = 4
+
+[node name="btn_quit" type="TextureButton" parent="PilePrincipale/Panel/Fenetre/BoiteWindow/ActionWindow" groups=["bnt_icone"]]
+texture_normal = SubResource( 1 )
+texture_hover = ExtResource( 27 )
+script = ExtResource( 38 )
+Say = "quit"
+
+[node name="btn_mini" type="TextureButton" parent="PilePrincipale/Panel/Fenetre/BoiteWindow/ActionWindow" groups=["bnt_icone"]]
+margin_left = 4.0
+margin_right = 4.0
+texture_normal = SubResource( 1 )
+texture_hover = ExtResource( 29 )
+script = ExtResource( 38 )
+Say = "mini"
+
+[node name="btn_max" type="TextureButton" parent="PilePrincipale/Panel/Fenetre/BoiteWindow/ActionWindow" groups=["bnt_icone"]]
+margin_left = 8.0
+margin_right = 8.0
+texture_normal = SubResource( 1 )
+texture_hover = ExtResource( 19 )
+script = ExtResource( 38 )
+Say = "maxi"
+
+[node name="win_titre" type="Label" parent="PilePrincipale/Panel/Fenetre/BoiteWindow"]
+margin_left = 477.0
+margin_top = 5.0
+margin_right = 543.0
+margin_bottom = 24.0
+size_flags_horizontal = 6
+text = "win_titre"
+script = ExtResource( 39 )
+connect_to_variable = "win_titre"
+
+[node name="TopBarre" type="Control" parent="PilePrincipale/Panel"]
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PilePrincipale/Panel/TopBarre"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_right = -8.0
+alignment = 1
+
+[node name="Menus" type="HBoxContainer" parent="PilePrincipale/Panel/TopBarre/HBoxContainer"]
+margin_top = 7.0
+margin_right = 219.0
+margin_bottom = 32.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_constants/separation = 10
+
+[node name="Menu 1" type="MenuButton" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Menus"]
+margin_right = 64.0
+margin_bottom = 25.0
+text = "Menu 1"
+switch_on_hover = true
+
+[node name="Menu 2" type="MenuButton" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Menus"]
+margin_left = 74.0
+margin_right = 142.0
+margin_bottom = 25.0
+text = "Menu 2"
+switch_on_hover = true
+
+[node name="Menu 3" type="MenuButton" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Menus"]
+margin_left = 152.0
+margin_right = 219.0
+margin_bottom = 25.0
+text = "Menu 3"
+switch_on_hover = true
+
+[node name="Buttons Espaces" type="HBoxContainer" parent="PilePrincipale/Panel/TopBarre/HBoxContainer"]
+margin_left = 223.0
+margin_right = 906.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 7
+alignment = 1
+
+[node name="Lanceur" type="GridContainer" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Buttons Espaces"]
+margin_left = 249.0
+margin_top = 5.0
+margin_right = 433.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 10
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+identifiant = 1
+
+[node name="Lanceur de Fichiers" type="Button" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Buttons Espaces/Lanceur" groups=["bnt_icone"]]
+margin_right = 184.0
+margin_bottom = 30.0
+toggle_mode = true
+pressed = true
+text = "Lanceur de Fichiers"
+icon = ExtResource( 34 )
+flat = true
+script = ExtResource( 22 )
+scene = ExtResource( 37 )
+
+[node name="CAD" type="GridContainer" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Buttons Espaces"]
+visible = false
+margin_left = 195.0
+margin_top = 5.0
+margin_right = 509.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 10
+script = ExtResource( 11 )
+identifiant = 2
+best_child = 1
+
+[node name="Organiser" type="Button" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Buttons Espaces/CAD" groups=["bnt_icone"]]
+margin_right = 112.0
+margin_bottom = 30.0
+toggle_mode = true
+text = "Organiser"
+icon = ExtResource( 14 )
+flat = true
+script = ExtResource( 22 )
+scene = ExtResource( 16 )
+
+[node name="Dessiner" type="Button" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Buttons Espaces/CAD" groups=["bnt_icone"]]
+margin_left = 116.0
+margin_right = 218.0
+margin_bottom = 30.0
+toggle_mode = true
+text = "Dessiner"
+icon = ExtResource( 35 )
+flat = true
+script = ExtResource( 22 )
+scene = ExtResource( 17 )
+
+[node name="Publier" type="Button" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Buttons Espaces/CAD" groups=["bnt_icone"]]
+margin_left = 222.0
+margin_right = 314.0
+margin_bottom = 30.0
+toggle_mode = true
+text = "Publier"
+icon = ExtResource( 18 )
+flat = true
+script = ExtResource( 22 )
+scene = ExtResource( 20 )
+
+[node name="Option" type="GridContainer" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Buttons Espaces"]
+visible = false
+margin_left = 403.0
+margin_top = 5.0
+margin_right = 619.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 10
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+identifiant = 3
+
+[node name="Fichier" type="Button" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Buttons Espaces/Option" groups=["bnt_icone"]]
+margin_right = 89.0
+margin_bottom = 30.0
+toggle_mode = true
+text = "Fichier"
+icon = ExtResource( 23 )
+flat = true
+script = ExtResource( 22 )
+scene = ExtResource( 24 )
+
+[node name="Application" type="Button" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Buttons Espaces/Option" groups=["bnt_icone"]]
+margin_left = 93.0
+margin_right = 216.0
+margin_bottom = 30.0
+toggle_mode = true
+text = "Application"
+icon = ExtResource( 15 )
+flat = true
+script = ExtResource( 22 )
+scene = ExtResource( 9 )
+
+[node name="Options" type="HBoxContainer" parent="PilePrincipale/Panel/TopBarre/HBoxContainer"]
+margin_left = 910.0
+margin_right = 1008.0
+margin_bottom = 40.0
+alignment = 2
+
+[node name="Cloud" type="Button" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Options" groups=["bnt_icone"]]
+margin_right = 23.0
+margin_bottom = 40.0
+toggle_mode = true
+text = "C"
+flat = true
+script = ExtResource( 38 )
+
+[node name="Setting" type="Button" parent="PilePrincipale/Panel/TopBarre/HBoxContainer/Options" groups=["bnt_icone"]]
+margin_left = 27.0
+margin_right = 98.0
+margin_bottom = 40.0
+toggle_mode = true
+text = "Options"
+flat = true
+script = ExtResource( 38 )
+Say = "options"
+
+[node name="Shadow1" type="TextureRect" parent="PilePrincipale"]
+self_modulate = Color( 1, 1, 1, 0.0588235 )
+margin_top = 40.0
+margin_right = 1024.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 0, 25 )
+mouse_filter = 2
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vide" type="Control" parent="PilePrincipale"]
+margin_top = 65.0
+margin_right = 1024.0
+margin_bottom = 545.0
+mouse_filter = 2
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shadow2" type="TextureRect" parent="PilePrincipale"]
+self_modulate = Color( 1, 1, 1, 0.0588235 )
+margin_top = 545.0
+margin_right = 1024.0
+margin_bottom = 570.0
+rect_min_size = Vector2( 0, 25 )
+mouse_filter = 2
+texture = ExtResource( 36 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BotBarre" type="Control" parent="PilePrincipale"]
+margin_top = 570.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 0, 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="PilePrincipale/BotBarre"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PilePrincipale/BotBarre"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PilePrincipale/BotBarre/HBoxContainer"]
+margin_left = 948.0
+margin_right = 1024.0
+margin_bottom = 30.0
+alignment = 2
+
+[node name="Help" type="Button" parent="PilePrincipale/BotBarre/HBoxContainer/HBoxContainer" groups=["bnt_icone"]]
+margin_right = 36.0
+margin_bottom = 30.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource( 25 )
+flat = true
+script = ExtResource( 38 )
+Say = "help"
+
+[node name="Debug" type="Button" parent="PilePrincipale/BotBarre/HBoxContainer/HBoxContainer" groups=["bnt_icone"]]
+margin_left = 40.0
+margin_right = 76.0
+margin_bottom = 30.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource( 31 )
+flat = true
+script = ExtResource( 6 )
+scene = ExtResource( 2 )
+destination = "/root/SimpleCAD/Processus"
+
+[node name="Processus" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Help" parent="Processus" instance=ExtResource( 32 )]
+visible = false
+
+[node name="Quitter" parent="Processus" instance=ExtResource( 1 )]
+visible = false

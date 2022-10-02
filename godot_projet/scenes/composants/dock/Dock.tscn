@@ -1,0 +1,179 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://graphique/icones/dock/default_tools.png" type="Texture" id=1]
+[ext_resource path="res://graphique/icones/dock/options2.png" type="Texture" id=2]
+[ext_resource path="res://graphique/icones/dock/home.png" type="Texture" id=3]
+[ext_resource path="res://graphique/icones/dock/nav-arrow-left.svg" type="Texture" id=4]
+[ext_resource path="res://scenes/composants/dock/Dock.gd" type="Script" id=5]
+[ext_resource path="res://graphique/icones/96/aide.png" type="Texture" id=6]
+[ext_resource path="res://graphique/icones/window/bug-24.png" type="Texture" id=7]
+[ext_resource path="res://graphique/theme/panels/Panel_carre.stylebox" type="StyleBox" id=8]
+
+[node name="Dock" type="Control"]
+anchor_bottom = 1.0
+rect_min_size = Vector2( 50, 0 )
+script = ExtResource( 5 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_bottom = 1.0
+rect_min_size = Vector2( 40, 0 )
+custom_styles/panel = ExtResource( 8 )
+
+[node name="General" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 10.0
+margin_bottom = -10.0
+alignment = 1
+
+[node name="Nav" type="VBoxContainer" parent="Panel/General"]
+margin_left = 1.0
+margin_right = 39.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Home" type="Button" parent="Panel/General/Nav" groups=["bnt_icone"]]
+margin_right = 38.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+disabled = true
+text = "home"
+icon = ExtResource( 3 )
+flat = true
+clip_text = true
+
+[node name="Retour" type="Button" parent="Panel/General/Nav" groups=["bnt_icone"]]
+visible = false
+margin_top = 34.0
+margin_right = 36.0
+margin_bottom = 64.0
+size_flags_horizontal = 4
+icon = ExtResource( 4 )
+flat = true
+
+[node name="Tools" type="VBoxContainer" parent="Panel/General"]
+margin_left = 2.0
+margin_top = 107.0
+margin_right = 38.0
+margin_bottom = 375.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="Panel/General/Tools" groups=["bnt_icone"]]
+margin_right = 36.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Button4" type="Button" parent="Panel/General/Tools" groups=["bnt_icone"]]
+margin_top = 34.0
+margin_right = 36.0
+margin_bottom = 64.0
+size_flags_horizontal = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Button5" type="Button" parent="Panel/General/Tools" groups=["bnt_icone"]]
+margin_top = 68.0
+margin_right = 36.0
+margin_bottom = 98.0
+size_flags_horizontal = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Button6" type="Button" parent="Panel/General/Tools" groups=["bnt_icone"]]
+margin_top = 102.0
+margin_right = 36.0
+margin_bottom = 132.0
+size_flags_horizontal = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Button7" type="Button" parent="Panel/General/Tools" groups=["bnt_icone"]]
+margin_top = 136.0
+margin_right = 36.0
+margin_bottom = 166.0
+size_flags_horizontal = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Button8" type="Button" parent="Panel/General/Tools" groups=["bnt_icone"]]
+margin_top = 170.0
+margin_right = 36.0
+margin_bottom = 200.0
+size_flags_horizontal = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Button9" type="Button" parent="Panel/General/Tools" groups=["bnt_icone"]]
+margin_top = 204.0
+margin_right = 36.0
+margin_bottom = 234.0
+size_flags_horizontal = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Button10" type="Button" parent="Panel/General/Tools" groups=["bnt_icone"]]
+margin_top = 238.0
+margin_right = 36.0
+margin_bottom = 268.0
+size_flags_horizontal = 4
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Autre" type="VBoxContainer" parent="Panel/General"]
+margin_top = 452.0
+margin_right = 40.0
+margin_bottom = 580.0
+size_flags_horizontal = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="debug" type="Button" parent="Panel/General/Autre" groups=["bnt_icone"]]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 5
+toggle_mode = true
+icon = ExtResource( 7 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="Aide" type="Button" parent="Panel/General/Autre" groups=["bnt_icone"]]
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 5
+toggle_mode = true
+icon = ExtResource( 6 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="Options3" type="Button" parent="Panel/General/Autre" groups=["bnt_icone"]]
+margin_top = 88.0
+margin_right = 40.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 5
+toggle_mode = true
+icon = ExtResource( 2 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[connection signal="button_down" from="Panel/General/Nav/Home" to="." method="_on_Home_button_down"]

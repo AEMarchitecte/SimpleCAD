@@ -130,8 +130,8 @@ func remplace_pkc():
 		#get_tree().quit()
 		get_tree().reload_current_scene()
 	else:
-		Global_Variable.build_phase = "Version à jour !"
-		yield(get_tree().create_timer(1), "timeout")
+		#Global_Variable.build_phase = "Version à jour !"
+		#yield(get_tree().create_timer(1), "timeout")
 		var node_openning = get_node("/root/Openning")
 		node_openning.build_process("environnement")
 

@@ -1,0 +1,29 @@
+[gd_scene format=2]
+
+[node name="Dessiner" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="Panel/CenterContainer"]
+margin_left = 481.0
+margin_top = 293.0
+margin_right = 543.0
+margin_bottom = 307.0
+text = "Organiser"
+__meta__ = {
+"_edit_use_anchors_": false
+}

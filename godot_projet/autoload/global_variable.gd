@@ -12,6 +12,16 @@ onready var licence_key = ""
 onready var build_phase = ""
 onready var app_pause = false
 onready var reload_app = false
+onready var win_titre = "SimpleCAD"
+onready var file_open = false
+
+# Gestion des espaces
+onready var current_space = "Launcher"
+onready var app_mode = "Launcher" setget actualise_app_mode
+func actualise_app_mode(new_app_mode):
+	app_mode = new_app_mode
+	print("Global_variable.app_mode get [", app_mode, "]")
+	Global_Signal.propage_new_app_mode()
 
 const cfg_env_name = "env.cfg"
 const cfg_use_name = "use.cfg"
@@ -29,8 +39,6 @@ var locale = OS.get_locale()
 var model_name = OS.get_name()
 
 
-# variable d'espaces
-onready var current_space = "lanceur"
 
 
 onready var message = {
@@ -62,8 +70,8 @@ var defaut_user_shortcuts = {
 	cute = "k",
 	}
 var defaut_user_theme = {
-	color_p1 = Color.darkgray,
-	color_p2 = Color.ghostwhite,
+	color_text = Color.darkgray,
+	color_fond = Color.white,
 	color_user = Color.black,
 	}
 var defaut_user_settings = {

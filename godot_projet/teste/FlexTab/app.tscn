@@ -1,0 +1,89 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://teste/FlexTab/flextab.gd" type="Script" id=1]
+
+[node name="app" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+
+[node name="FlexTab" type="GridContainer" parent="HSplitContainer"]
+visible = false
+margin_right = 100.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 100, 0 )
+script = ExtResource( 1 )
+btn_Rouge = null
+btn_Bleu = null
+btn_Vert = null
+btn_Button4 = null
+btn_Button5 = null
+btn_Button6 = null
+btn_Button7 = null
+btn_Button8 = null
+
+[node name="Rouge" type="Button" parent="HSplitContainer/FlexTab"]
+margin_right = 100.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Rouge"
+
+[node name="Bleu" type="Button" parent="HSplitContainer/FlexTab"]
+margin_top = 24.0
+margin_right = 100.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+text = "Rouge"
+
+[node name="Vert" type="Button" parent="HSplitContainer/FlexTab"]
+margin_top = 48.0
+margin_right = 100.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+text = "Rouge"
+
+[node name="Button4" type="Button" parent="HSplitContainer/FlexTab"]
+margin_top = 72.0
+margin_right = 100.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+text = "Rouge"
+
+[node name="Button5" type="Button" parent="HSplitContainer/FlexTab"]
+margin_top = 96.0
+margin_right = 100.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+text = "Rouge"
+
+[node name="Button6" type="Button" parent="HSplitContainer/FlexTab"]
+margin_top = 120.0
+margin_right = 100.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+text = "Rouge"
+
+[node name="Button7" type="Button" parent="HSplitContainer/FlexTab"]
+margin_top = 144.0
+margin_right = 100.0
+margin_bottom = 164.0
+size_flags_horizontal = 3
+text = "Rouge"
+
+[node name="Button8" type="Button" parent="HSplitContainer/FlexTab"]
+margin_top = 168.0
+margin_right = 100.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+text = "Rouge"
+
+[node name="Control" type="Control" parent="HSplitContainer"]
+margin_right = 924.0
+margin_bottom = 500.0

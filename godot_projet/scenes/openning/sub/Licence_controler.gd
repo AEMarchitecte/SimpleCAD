@@ -13,8 +13,8 @@ func _ready():
 	
 	
 	if key_is_valide() == true:
-		Global_Variable.build_phase = "Clef de licence valide !"
-		yield(get_tree().create_timer(2), "timeout")
+		#Global_Variable.build_phase = "Clef de licence valide !"
+		#yield(get_tree().create_timer(2), "timeout")
 
 		var node_openning = get_node("/root/Openning")
 		node_openning.build_process("update_app")

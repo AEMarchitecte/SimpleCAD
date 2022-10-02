@@ -1,0 +1,256 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://graphique/icones/96/flèche-bas-droite-96.png" type="Texture" id=1]
+[ext_resource path="res://graphique/icones/96/icons8-macos-fermer-96.png" type="Texture" id=2]
+[ext_resource path="res://graphique/theme/SimpleCAD.theme" type="Theme" id=3]
+[ext_resource path="res://graphique/theme/panels/Panel_arrondi_10px_haut.stylebox" type="StyleBox" id=4]
+[ext_resource path="res://graphique/icones/96/flèche-haut-droite-96.png" type="Texture" id=5]
+[ext_resource path="res://script/move_panel.gd" type="Script" id=6]
+[ext_resource path="res://graphique/icones/96/cercle-non-coché-96.png" type="Texture" id=7]
+[ext_resource path="res://graphique/icones/96/flèche-bas-96.png" type="Texture" id=8]
+[ext_resource path="res://graphique/icones/96/flèche-haut-96.png" type="Texture" id=9]
+[ext_resource path="res://scenes/composants/topbarre/TopBarre.gd" type="Script" id=10]
+[ext_resource path="res://scenes/espaces/lanceur/launcher_scene.tscn" type="PackedScene" id=11]
+[ext_resource path="res://class/Bouton.gd" type="Script" id=12]
+[ext_resource path="res://class/ConteneurBoutons.gd" type="Script" id=13]
+[ext_resource path="res://graphique/illustrations/ombre.png" type="Texture" id=14]
+[ext_resource path="res://scenes/espaces/publier/Publier.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/espaces/dessiner/Dessiner.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/espaces/organiser/Organiser.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/espaces/options/fichier/Fichier.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/espaces/options/application/Application.tscn" type="PackedScene" id=19]
+[ext_resource path="res://graphique/icones/espaces/configuration-application-24.png" type="Texture" id=20]
+[ext_resource path="res://graphique/icones/espaces/icons8-rocket-lancée-24.png" type="Texture" id=21]
+[ext_resource path="res://graphique/icones/espaces/icons8-create-icon-24.png" type="Texture" id=22]
+[ext_resource path="res://graphique/icones/espaces/configuration-fichier-24.png" type="Texture" id=23]
+[ext_resource path="res://graphique/icones/espaces/icons8-contenu-24.png" type="Texture" id=24]
+[ext_resource path="res://graphique/icones/espaces/icons8-livre-ouvert-24.png" type="Texture" id=25]
+
+[node name="TopBarre" type="Control"]
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
+script = ExtResource( 10 )
+
+[node name="Panel" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 3 )
+custom_styles/panel = ExtResource( 4 )
+script = ExtResource( 6 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+mouse_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 10
+
+[node name="WindowActions" type="HBoxContainer" parent="Panel/HBoxContainer"]
+margin_top = 15.0
+margin_right = 68.0
+margin_bottom = 35.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Btn_Close" type="TextureButton" parent="Panel/HBoxContainer/WindowActions" groups=["bnt_icone"]]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Btn_Mini" type="TextureButton" parent="Panel/HBoxContainer/WindowActions" groups=["bnt_icone"]]
+unique_name_in_owner = true
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 9 )
+texture_disabled = ExtResource( 7 )
+expand = true
+
+[node name="Btn_Maxi" type="TextureButton" parent="Panel/HBoxContainer/WindowActions" groups=["bnt_icone"]]
+unique_name_in_owner = true
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 7 )
+expand = true
+
+[node name="Btn_Full" type="TextureButton" parent="Panel/HBoxContainer/WindowActions" groups=["bnt_icone"]]
+visible = false
+margin_left = 72.0
+margin_right = 92.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="FileSelector" type="OptionButton" parent="Panel/HBoxContainer" groups=["bnt_icone"]]
+visible = false
+margin_left = 78.0
+margin_top = 12.0
+margin_right = 184.0
+margin_bottom = 37.0
+size_flags_vertical = 4
+text = "Fichier.ext"
+flat = true
+
+[node name="Espaces" type="CenterContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Home" type="GridContainer" parent="Panel/Espaces"]
+visible = false
+margin_left = 462.0
+margin_top = 10.0
+margin_right = 561.0
+margin_bottom = 40.0
+mouse_filter = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource( 13 )
+identifiant = 1
+
+[node name="Lanceur" type="Button" parent="Panel/Espaces/Home" groups=["bnt_icone"]]
+margin_right = 99.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+pressed = true
+text = "Lanceur"
+icon = ExtResource( 21 )
+flat = true
+script = ExtResource( 12 )
+scene = ExtResource( 11 )
+
+[node name="CAD" type="GridContainer" parent="Panel/Espaces"]
+margin_left = 355.0
+margin_top = 10.0
+margin_right = 669.0
+margin_bottom = 40.0
+mouse_filter = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+columns = 10
+script = ExtResource( 13 )
+identifiant = 2
+
+[node name="Organiser" type="Button" parent="Panel/Espaces/CAD" groups=["bnt_icone"]]
+margin_right = 112.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+pressed = true
+text = "Organiser"
+icon = ExtResource( 24 )
+flat = true
+script = ExtResource( 12 )
+scene = ExtResource( 17 )
+
+[node name="Dessiner" type="Button" parent="Panel/Espaces/CAD" groups=["bnt_icone"]]
+margin_left = 116.0
+margin_right = 218.0
+margin_bottom = 30.0
+rect_pivot_offset = Vector2( -580, 204 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "Dessiner"
+icon = ExtResource( 22 )
+flat = true
+script = ExtResource( 12 )
+scene = ExtResource( 16 )
+
+[node name="Publier" type="Button" parent="Panel/Espaces/CAD" groups=["bnt_icone"]]
+margin_left = 222.0
+margin_right = 314.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "Publier"
+icon = ExtResource( 25 )
+flat = true
+script = ExtResource( 12 )
+scene = ExtResource( 15 )
+
+[node name="Options" type="GridContainer" parent="Panel/Espaces"]
+visible = false
+margin_left = 404.0
+margin_top = 10.0
+margin_right = 620.0
+margin_bottom = 40.0
+mouse_filter = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+columns = 10
+script = ExtResource( 13 )
+identifiant = 3
+
+[node name="Fichier" type="Button" parent="Panel/Espaces/Options" groups=["bnt_icone"]]
+margin_right = 89.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+pressed = true
+text = "Fichier"
+icon = ExtResource( 23 )
+flat = true
+script = ExtResource( 12 )
+scene = ExtResource( 18 )
+
+[node name="Application" type="Button" parent="Panel/Espaces/Options" groups=["bnt_icone"]]
+margin_left = 93.0
+margin_right = 216.0
+margin_bottom = 30.0
+rect_pivot_offset = Vector2( -580, 204 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "Application"
+icon = ExtResource( 20 )
+flat = true
+script = ExtResource( 12 )
+scene = ExtResource( 19 )
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+modulate = Color( 1, 1, 1, 0.0392157 )
+anchor_right = 1.0
+margin_top = 50.0
+margin_bottom = 60.0
+texture = ExtResource( 14 )
+expand = true
+
+[connection signal="button_down" from="Panel/HBoxContainer/WindowActions/Btn_Close" to="." method="_on_Btn_Close_button_down"]
+[connection signal="toggled" from="Panel/HBoxContainer/WindowActions/Btn_Mini" to="." method="_on_Btn_Mini_toggled"]
+[connection signal="toggled" from="Panel/HBoxContainer/WindowActions/Btn_Maxi" to="." method="_on_Btn_Maxi_toggled"]
+[connection signal="toggled" from="Panel/HBoxContainer/WindowActions/Btn_Full" to="." method="_on_Btn_Full_toggled"]

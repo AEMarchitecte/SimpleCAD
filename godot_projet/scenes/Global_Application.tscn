@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://graphique/theme/SimpleCAD.theme" type="Theme" id=1]
+[ext_resource path="res://graphique/theme/panels/Panel_arrondi_10px.stylebox" type="StyleBox" id=2]
+[ext_resource path="res://class/ConteneurScenes.gd" type="Script" id=3]
+[ext_resource path="res://scenes/processus/debug/Bug.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/composants/topbarre/TopBarre.tscn" type="PackedScene" id=6]
+
+[node name="Global_Application" type="Node"]
+
+[node name="BG" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="BG"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_styles/panel = ExtResource( 2 )
+
+[node name="3D" type="CanvasLayer" parent="."]
+
+[node name="Spatial" type="Spatial" parent="3D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Window" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+
+[node name="SpacesContainer" type="Control" parent="UI/Window"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 50.0
+
+[node name="Lanceur" type="Control" parent="UI/Window/SpacesContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+identifiant = 1
+mode = "Remplace"
+
+[node name="CAD" type="Control" parent="UI/Window/SpacesContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+identifiant = 2
+mode = "Remplace"
+
+[node name="Options" type="Control" parent="UI/Window/SpacesContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+identifiant = 3
+mode = "Remplace"
+
+[node name="Debug" parent="UI/Window/SpacesContainer" instance=ExtResource( 5 )]
+margin_top = 50.0
+margin_bottom = -150.0
+
+[node name="TopBarre" parent="UI/Window" instance=ExtResource( 6 )]

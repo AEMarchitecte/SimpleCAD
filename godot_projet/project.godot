@@ -8,12 +8,44 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Button",
+"class": "Bouton",
+"language": "GDScript",
+"path": "res://class/Bouton.gd"
+}, {
+"base": "GridContainer",
+"class": "ConteneurBoutons",
+"language": "GDScript",
+"path": "res://class/ConteneurBoutons.gd"
+}, {
+"base": "Control",
+"class": "ConteneurScenes",
+"language": "GDScript",
+"path": "res://class/ConteneurScenes.gd"
+}, {
+"base": "GridContainer",
+"class": "FlexTabControler",
+"language": "GDScript",
+"path": "res://teste/FlexTab/flextab.gd"
+} ]
+_global_script_class_icons={
+"Bouton": "res://class/Bouton.svg",
+"ConteneurBoutons": "res://class/ConteneurBoutons.svg",
+"ConteneurScenes": "res://class/ConteneurScenes.svg",
+"FlexTabControler": "res://class/FlexTabControler.svg"
+}
+
 [application]
 
 config/name="SimpleCAD"
-run/main_scene="res://scenes/setting/setting_panel.tscn"
-config/icon="res://graphique/appicon.png"
-config/windows_native_icon="res://graphique/appicon.ico"
+run/main_scene="res://scenes/openning/openning_scene.tscn"
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 0 )
+config/icon="res://graphique/icones/application/appicon.png"
+config/windows_native_icon="res://graphique/icones/application/appicon.ico"
 
 [autoload]
 
@@ -23,6 +55,7 @@ Global_Signal="*res://autoload/global_signal.gd"
 
 [display]
 
+window/dpi/allow_hidpi=true
 window/per_pixel_transparency/allowed=true
 
 [physics]
@@ -31,5 +64,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_clear_color=Color( 0.156863, 0.156863, 0.156863, 1 )
+environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
 environment/default_environment="res://default_env.tres"

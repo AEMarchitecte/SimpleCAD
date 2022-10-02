@@ -1,7 +1,5 @@
 extends "res://autoload/global_fonction.gd"
 
-signal aaa
-
 onready var premier = get_node("Premiere")
 
 
@@ -180,7 +178,7 @@ func config_user_attribut():
 	var config = ConfigFile.new()
 	config.load(cfg_use_path)
 	for data in config.get_sections():
-			last_user = config.get_value(data, "last_user")
+		last_user = config.get_value(data, "last_user")
 	print("Variables de l'utilisateur attribuées avec succès...")
 
 
@@ -190,17 +188,17 @@ func config_user_attribut():
 
 
 func ouverture():
-	yield(get_tree().create_timer(1), "timeout")
-	Global_Variable.build_phase = "Ouverture"
-	yield(get_tree().create_timer(0.75), "timeout")
-	Global_Variable.build_phase = "Ouverture ."
-	yield(get_tree().create_timer(0.75), "timeout")
-	Global_Variable.build_phase = "Ouverture . ."
-	yield(get_tree().create_timer(0.75), "timeout")
+#	yield(get_tree().create_timer(1), "timeout")
+#	Global_Variable.build_phase = "Ouverture"
+#	yield(get_tree().create_timer(0.75), "timeout")
+#	Global_Variable.build_phase = "Ouverture ."
+#	yield(get_tree().create_timer(0.75), "timeout")
+#	Global_Variable.build_phase = "Ouverture . ."
+#	yield(get_tree().create_timer(0.75), "timeout")
 	Global_Variable.build_phase = "Ouvertur❢e . . ."
 	yield(get_tree().create_timer(1), "timeout")
 	
-	Global_Variable.build_phase = "Lecture des fichiers de configurations..."
+	Global_Variable.build_phase = "Lecture des fichiers de configurations . . ."
 	yield(get_tree().create_timer(1), "timeout")
 	
 	var node_openning = get_node("/root/Openning")
@@ -214,12 +212,4 @@ func ouverture():
 
 
 
-func build_theme():
-	var theme = load("res://graphique/theme/SimpleCAD.theme")
-	var panel = load("res://graphique/theme/Panel_base.stylebox")
-	var color_p1 = Global_Variable.user_theme["color_p1"]
-	var color_p2 = Global_Variable.user_theme["color_p2"]
-	var color_user = Global_Variable.user_theme["color_user"]
-	
-	theme.set_color("font_color", "Label", color_p1)
-	panel.set_bg_color(color_p2)
+
